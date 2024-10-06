@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+/*module.exports = (sequelize, DataTypes) => {
     const EmailLog = sequelize.define('EmailLog', {
         to: DataTypes.STRING,
         subject: DataTypes.STRING,
@@ -8,3 +8,4 @@ module.exports = (sequelize, DataTypes) => {
 
     return EmailLog;
 };
+*/
