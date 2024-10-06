@@ -4,7 +4,6 @@ const mailController = require('../api/mailController');
 const verifyToken = require('../controller/tokenize')
 
 router.post('/send', verifyToken, mailController.sendEmail);
-//router.get('/logs', mailController.getEmailLogs); 
 router.get('/', mailController.mainPage);
 
 module.exports = router;

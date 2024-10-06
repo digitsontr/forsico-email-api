@@ -1,5 +1,4 @@
 const axios = require('axios');
-//const { EmailLog } = require('../models');
 
 exports.mainPage = (req, res) => {
     res.status(200).send('API is up and running!');
@@ -7,9 +6,6 @@ exports.mainPage = (req, res) => {
 
 exports.sendEmail = async (req, res) => {
     const { to, subject, text } = req.body;
-
-    console.log("TO : ", to);
-    
     const accessToken = await getAccessTokenAsync();
     const emailData = {
         message: {
@@ -39,26 +35,12 @@ exports.sendEmail = async (req, res) => {
         console.log('Email sent successfully:', response.data);
         
         res.status(200).send('Email sent successfully');
-
-        //const emailLogging = await EmailLog.create({ to, subject, text, status: 'Sent' });
-
-        //console.log("EMAIL SUCCESS LOG : ", emailLogging)
     } catch (error) {
         console.error('Error on send email:', error.response ? error.response.data : error.message);
         res.status(500).send('Failed to send email');
     }
 };
 
-/*
-exports.getEmailLogs = async (req, res) => {
-    try {
-        const logs = await EmailLog.findAll();
-        res.status(200).json(logs);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-};
-*/
 
 async function getAccessTokenAsync() {
     const { ConfidentialClientApplication } = require('@azure/msal-node');
