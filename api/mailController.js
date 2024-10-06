@@ -1,6 +1,10 @@
 const axios = require('axios');
 const { EmailLog } = require('../models');
 
+exports.mainPage = (req, res) => {
+    res.status(200).send('API is up and running!');
+};
+
 exports.sendEmail = async (req, res) => {
     const { to, subject, text } = req.body;
 
@@ -12,7 +16,7 @@ exports.sendEmail = async (req, res) => {
             subject: subject,
             body: {
                 contentType: "HTML",
-                content: text
+                content: text 
             },
             toRecipients: [
                 {
