@@ -33,9 +33,14 @@ exports.sendEmail = async (req, res) => {
             }
         });
         console.log('Email sent successfully:', response.data);
+        
         res.status(200).send('Email sent successfully');
+
+        const emailLogging = await EmailLog.create({ to, subject, text, status: 'Sent' });
+
+        console.log("EMAIL SUCCESS LOG : ", emailLogging)
     } catch (error) {
-        console.error('Error sending email:', error.response ? error.response.data : error.message);
+        console.error('Error on send email:', error.response ? error.response.data : error.message);
         res.status(500).send('Failed to send email');
     }
 };
