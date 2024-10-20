@@ -6,6 +6,6 @@ const port = process.env.PORT || 8082;
 app.use(express.json());
 app.use('/api/mail', mailRoutes);
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port : ${port}`);
 });
 
