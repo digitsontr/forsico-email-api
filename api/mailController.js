@@ -1,10 +1,14 @@
 const axios = require('axios');
 
 exports.mainPage = (req, res) => {
+    console.log("THIS IS MAIN PAGE..");
+
     res.status(200).send('API is up and running!');
 };
 
 exports.sendEmail = async (req, res) => {
+    console.log("THIS IS A MAIL SENDER FUNCT..");
+
     const { to, subject, text } = req.body;
     const accessToken = await getAccessTokenAsync();
     const emailData = {
