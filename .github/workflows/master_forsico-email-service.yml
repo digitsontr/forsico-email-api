@@ -35,7 +35,6 @@ jobs:
         with:
           name: node-app
           path: release.zip
-          retention-days: 7
 
   deploy:
     runs-on: ubuntu-latest
@@ -58,9 +57,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_5050ABCE71DE42A693BF4D2F66A0418F }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8A34419A8F004C768671C763BDC84DDB }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CD2FE82AA2FD4B4291F679828A5D84E9 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A65552C6A08249EB9E9B638C3D19A1D4 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7450C7557BDA4C7CA9523D5E9E49BA10 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D432D90FBA7B4B52B0737E5E1D271632 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
