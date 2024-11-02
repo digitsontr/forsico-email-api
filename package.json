@@ -10,12 +10,6 @@
     "pg-hstore": "^2.3.4"
   },
   "scripts": {
-    "start": "pm2 start server.js --name 'email-service' --watch",
-    "stop": "pm2 stop email-service",
-    "restart": "pm2 restart email-service",
-    "delete": "pm2 delete email-service",
-    "logs": "pm2 logs email-service",
-    "list": "pm2 list",
-    "save": "pm2 save"
+    "start": "node app.js"
   }
 }
