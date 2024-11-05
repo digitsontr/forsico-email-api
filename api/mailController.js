@@ -9,14 +9,15 @@ exports.mainPage = (req, res) => {
 exports.sendEmail = async (req, res) => {
     console.log("THIS IS A MAIL SENDER FUNCT..");
 
-    const { to, subject, text } = req.body;
+    const { to, subject, html } = req.body;
     const accessToken = await getAccessTokenAsync();
+
     const emailData = {
         message: {
             subject: subject,
             body: {
                 contentType: "HTML",
-                content: text 
+                content: html
             },
             toRecipients: [
                 {
