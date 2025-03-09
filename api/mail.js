@@ -1,16 +1,11 @@
 const axios = require('axios');
 
-exports.mainPage = (req, res) => {
-    console.log("THIS IS MAIN PAGE..");
-
-    res.status(200).send('API is up and running!');
-};
-
 exports.sendEmail = async (req, res) => {
-    console.log("THIS IS A MAIL SENDER FUNCT..");
-
     const { to, subject, html } = req.body;
     const accessToken = await getAccessTokenAsync();
+
+    console.log("THIS IS A MAIL SENDER FUNCT.. \n", to, "\n", subject, "\n", html);
+
 
     const emailData = {
         message: {
@@ -31,18 +26,46 @@ exports.sendEmail = async (req, res) => {
     };
 
     try {
-        const response = await axios.post('https://graph.microsoft.com/v1.0/users/noreply@forsico.io/sendMail', emailData, {  // Corrected: Removed the extra curly braces around emailData
+        const response = await axios.post('https://graph.microsoft.com/v1.0/users/noreply@forsico.io/sendMail', emailData, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             }
         });
-        console.log('Email sent successfully:', response.data);
-        
-        res.status(200).send('Email sent successfully');
+
+        if (response.status > 199 && response.status < 300) {
+            console.log('Email sent successfully:', response.data);
+
+            const responseData = {
+                status: 'success',
+                message: 'Email sent successfully',
+                timestamp: new Date().toISOString(),
+            };
+    
+            console.log('Email sent successfully:', responseData);
+            res.status(200).json(responseData);
+        } else {
+            console.log('Email sent failed:', response.data);
+
+            const responseData = {
+                status: 'failed',
+                message: 'Email sent failed',
+                timestamp: new Date().toISOString(),
+            };
+    
+            console.log('Email sent successfully:', responseData);
+            res.status(400).json(responseData);
+        }
     } catch (error) {
         console.error('Error on send email:', error.response ? error.response.data : error.message);
-        res.status(500).send('Failed to send email');
+
+        const responseData = {
+            status: 'failed',
+            message: 'Email sent failed',
+            timestamp: new Date().toISOString(),
+        };
+
+        res.status(400).json(responseData);
     }
 };
 
