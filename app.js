@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const communicationRoutes = require('./routes/communicationRoutes');
+const informationRoutes = require('./routes/informationRoutes');
 const app = express();
 const port = process.env.PORT || 8080;
 
@@ -8,7 +8,7 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 
 app.use(express.json());
-app.use('/api/communication', communicationRoutes);
+app.use('/api/information', informationRoutes);
 app.listen(port, () => {
     console.log(`Server is running on port : ${port}`);
 });

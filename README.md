@@ -25,7 +25,7 @@ Tüm endpointler JWT token doğrulaması gerektirir. İsteklerde `Authorization`
 
 ### 1. Email Gönderme
 
-**Endpoint:** `POST /api/communication/send-mail`
+**Endpoint:** `POST /api/information/send-mail`
 
 **Request Body:**
 ```json
@@ -61,7 +61,7 @@ Tüm endpointler JWT token doğrulaması gerektirir. İsteklerde `Authorization`
 
 ### 2. Bildirim Gönderme
 
-**Endpoint:** `POST /api/communication/send-notification`
+**Endpoint:** `POST /api/information/send-notification`
 
 **Request:** 
 
@@ -76,9 +76,44 @@ Tüm endpointler JWT token doğrulaması gerektirir. İsteklerde `Authorization`
 
 ### 3. Slack Mesaj Gönderme
 
-**Endpoint:** `POST /api/communication/send-slack-message`
+**Endpoint:** `POST /api/information/send-slack-message`
 
 
+### Health Check
+
+**Endpoint:** `GET /api/information/health`
+
+Bu endpoint servisin durumunu kontrol etmek için kullanılır. Authentication gerektirmez.
+
+**Başarılı Response:**
+```json
+{
+    "status": "healthy",
+    "timestamp": "2024-03-21T10:00:00.000Z",
+    "services": {
+        "application": {
+            "status": "up",
+            "environment": "development",
+            "uptime": "123.45 seconds"
+        }
+    }
+}
+```
+
+**Hata Response:**
+```json
+{
+    "status": "unhealthy",
+    "timestamp": "2024-03-21T10:00:00.000Z",
+    "services": {
+        "application": {
+            "status": "down",
+            "environment": "development",
+            "error": "Error message"
+        }
+    }
+}
+```
 
 ## Geliştirme
 

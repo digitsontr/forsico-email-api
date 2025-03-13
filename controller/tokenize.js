@@ -11,6 +11,8 @@ const jwtSettings = {
 const verifyToken = (req, res, next) => {
   const token = req.headers["authorization"]?.split(" ")[1];
 
+  //console.log("TOKEN : ", token);
+
   if (isTokenExpired(token)) {
     return res
       .status(401)
