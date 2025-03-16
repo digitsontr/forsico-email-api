@@ -1,4 +1,4 @@
-# Forsico Communication Service
+# Forsico INFORMATION Service
 
 Bu servis, farklı iletişim kanalları üzerinden mesaj gönderimi sağlayan bir API servisidir. Email, notification ve Slack mesajları göndermek için kullanılabilir.
 
@@ -144,3 +144,32 @@ Proje GitHub Actions ile Azure App Service'e otomatik deploy edilmektedir. Maste
 ## Lisans
 
 Bu proje özel kullanım için geliştirilmiştir. Tüm hakları saklıdır.
+
+## Docker ile Çalıştırma
+
+### Docker Image Oluşturma
+```bash
+docker build -t forsico-information-service .
+```
+
+### Docker Container Çalıştırma
+```bash
+docker run -d \
+  -p 8080:8080 \
+  -e NODE_ENV=production \
+  -e JWT_ISSUER=forsicoio.authApi.com \
+  -e JWT_AUDIENCE=forsicoio.authApi.com \
+  -e JWT_SECRET_KEY=your_secret_key \
+  --name forsico-information-service \
+  forsico-information-service
+```
+
+### Docker Container Loglarını Görüntüleme
+```bash
+docker logs forsico-information-service
+```
+
+### Docker Container'ı Durdurma
+```bash
+docker stop forsico-information-service
+```

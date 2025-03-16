@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const informationRoutes = require('./routes/informationRoutes');
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 
 // Tüm originlere izin ver (sadece geliştirme ortamı için)
 app.use(cors());
